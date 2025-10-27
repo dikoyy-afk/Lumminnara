@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminara - Temukan Cahaya Sejati Anda</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Poppins font --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Tailwind Configuration - Gen Z Classy, Beige, Cream, and Gold */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-beige': '#D4C9BF',    /* Soft Beige - Main */
+                        'secondary-cream': '#FAF7F5',  /* Cream - Background Base */
+                        'accent-gold': '#B8860B',      /* Soft Gold Accent */
+                        'text-dark': '#5A4A3E',        /* Dark Espresso Text */
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft-glow': '0 4px 20px rgba(184, 134, 11, 0.1), 0 0 10px rgba(212, 201, 191, 0.5)',
+                        'button-glow': '0 0 15px rgba(184, 134, 11, 0.5)',
+                    },
+                    backgroundImage: {
+                        'gold-beige-gradient': 'linear-gradient(90deg, #B8860B 0%, #D4C9BF 100%)',
+                        'hero-gradient-soft': 'linear-gradient(180deg, rgba(250,247,245,1) 0%, rgba(212, 201, 191, 0.2) 100%)',
+                    },
+                }
+            }
+        }
+
+        /* Base styles */
+        body {
+            background-color: #FAF7F5; /* Cream Background */
+            color: #5A4A3E; /* Dark Espresso Text */
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Logo Glow */
+        .logo-text {
+            background: linear-gradient(90deg, #5A4A3E, #B8860B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Subtler shadow */
+            text-shadow: 0 1px 3px rgba(184, 134, 11, 0.2); 
+        }
+        
+        /* Gradient Button Animation */
+        .gradient-button {
+            background-color: #D4C9BF; /* Fallback to Beige */
+            background-image: linear-gradient(90deg, #B8860B 0%, #D4C9BF 100%);
+            color: #FAF7F5; /* Cream text for contrast */
+            font-weight: 600; /* Poppins SemiBold */
+            transition: all 0.3s ease;
+        }
+        .gradient-button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.5); 
+        }
+
+        /* Card Glow Effect - Soft and Luxurious */
+        .glow-card {
+            border: 1px solid rgba(184, 134, 11, 0.1); /* Subtle Gold border */
+            background-color: #FFFFFF; /* White card */
+            color: #5A4A3E; /* Dark text */
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+            box-shadow: 0 8px 30px rgba(80, 65, 50, 0.05); /* Soft, professional shadow */
+        }
+        .glow-card:hover {
+            border-color: #B8860B;
+            box-shadow: 0 8px 30px rgba(184, 134, 11, 0.15);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 8px solid rgba(184, 134, 11, 0.2);
+            border-top: 8px solid #B8860B;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Global Header/Navigation -->
+    <header class="sticky top-0 z-50 bg-secondary-cream/95 backdrop-blur-sm border-b border-primary-beige/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="flex flex-col items-start" onclick="navigate('home')">
+                <h1 class="text-3xl font-extrabold uppercase logo-text tracking-widest leading-none">LUMINARA</h1>
+                <p class="text-xs font-light text-text-dark/70 mt-1">Sains & Estetika Generasi Anda</p>
+            </a>
+            <nav class="flex space-x-4">
+                <button class="text-sm font-medium text-text-dark/90 hover:text-accent-gold transition" onclick="navigate('home')">Beranda</button>
+                <button class="text-sm font-medium text-text-dark/90 hover:text-accent-gold transition" onclick="navigate('analysis')">Analisis AI</button>
+                <button class="text-sm font-medium text-text-dark/90 hover:text-accent-gold transition" onclick="navigate('about')">Tentang Kami</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        <!-- 1. Home Section -->
+        <section id="home-view" class="h-screen flex flex-col justify-center items-center text-center bg-hero-gradient-soft pt-10">
+            <div class="max-w-4xl">
+                <h2 class="text-6xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-4 logo-text">
+                    Unlock Your Aesthetic
+                </h2>
+                <p class="text-2xl text-text-dark/80 font-semibold mb-12 max-w-3xl mx-auto">
+                    Analisis Skin Tone + Karakter Gemini Anda. Definisi ulang gaya pribadi dengan sentuhan mewah dan minimalis.
+                </p>
+                <button class="gradient-button font-semibold py-4 px-10 rounded-full text-lg shadow-soft-glow" onclick="navigate('analysis')">
+                    Mulai Eksplorasi Anda
+                </button>
+            </div>
+            
+            <div class="mt-20 w-full">
+                <h3 class="text-xl font-semibold uppercase tracking-wider text-accent-gold mb-8">Filosofi Luminara</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glow-card p-6 rounded-xl text-left">
+                        <div class="text-3xl font-bold text-accent-gold mb-2">1. AI Presisi</div>
+                        <h4 class="text-xl font-semibold mb-2">Deteksi Sub-Nada Canggih</h4>
+                        <p class="text-text-dark/70">Teknologi kami membaca pigmen kulit Anda secara mendalam untuk hasil yang akurat dan *classy*.</p>
+                    </div>
+                    <div class="glow-card p-6 rounded-xl text-left">
+                        <div class="text-3xl font-bold text-accent-gold mb-2">2. Persona Style</div>
+                        <h4 class="text-xl font-semibold mb-2">Skin Tone X Zodiak</h4>
+                        <p class="text-text-dark/70">Menganalisis perpaduan warna alami dengan karakter astrologi Anda (Simulasi Gemini).</p>
+                    </div>
+                    <div class="glow-card p-6 rounded-xl text-left">
+                        <div class="text-3xl font-bold text-accent-gold mb-2">3. Output Mewah</div>
+                        <h4 class="text-xl font-semibold mb-2">Rekomendasi High-End</h4>
+                        <p class="text-text-dark/70">Dapatkan palet warna dan tips gaya yang disesuaikan untuk estetika Gen Z yang elegan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. AI Analysis (Upload/Processing) Section -->
+        <section id="analysis-view" class="min-h-screen flex flex-col justify-center items-center text-center hidden">
+            <div id="analysis-input" class="max-w-xl w-full p-8 glow-card rounded-2xl">
+                <h3 class="text-4xl font-extrabold uppercase mb-6 text-accent-gold">Analisis Warna & Persona</h3>
+                <p class="text-text-dark/70 mb-8 font-semibold">Unggah foto *close-up* wajah Anda dengan pencahayaan alami untuk hasil terbaik.</p>
+                
+                <input type="file" id="photo-upload" accept="image/*" class="hidden" onchange="startAnalysis()">
+                
+                <div id="upload-placeholder" class="border-4 border-dashed border-primary-beige/80 bg-secondary-cream/50 p-12 rounded-lg cursor-pointer hover:border-accent-gold transition mb-6" onclick="document.getElementById('photo-upload').click()">
+                    <svg class="w-10 h-10 mx-auto text-primary-beige/90 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <p class="text-text-dark/80 font-semibold">Klik untuk Unggah Foto atau Gunakan Kamera</p>
+                </div>
+
+                <button class="gradient-button font-bold py-3 px-8 rounded-full w-full text-lg shadow-lg opacity-50 cursor-not-allowed" disabled>
+                    (Simulasi) Unggah Langsung dari Kamera
+                </button>
+            </div>
+
+            <div id="analysis-processing" class="flex flex-col items-center justify-center p-12 hidden">
+                <div class="spinner mb-6"></div>
+                <h4 class="text-3xl font-extrabold uppercase tracking-wide logo-text mb-4">Luminara Sedang Memproses Data...</h4>
+                <p class="text-text-dark/70">Menganalisis *chroma* kulit dan energi Gemini Anda. Mohon tunggu sejenak.</p>
+            </div>
+        </section>
+        
+        <!-- 3. Results Section (Dynamically populated) -->
+        <section id="results-view" class="min-h-screen pt-4 hidden">
+            <div id="result-content" class="max-w-5xl mx-auto">
+                <!-- Result data will be injected here -->
+            </div>
+        </section>
+
+        <!-- 4. About Section (Distinct Page) -->
+        <section id="about-view" class="min-h-screen pt-16 hidden">
+            <div class="max-w-3xl mx-auto">
+                <h3 class="text-4xl font-extrabold uppercase text-accent-gold mb-6">Tentang Kami: Sains untuk Estetika</h3>
+                <p class="text-lg text-text-dark/80 mb-6">
+                    Luminara adalah gabungan antara teknologi paling mutakhir dan seni penataan diri. Kami percaya bahwa gaya terbaik datang dari pemahaman mendalam tentang warna dan persona Anda. Misi kami adalah memberdayakan Anda untuk menampilkan versi diri yang paling otentik dan elegan.
+                </p>
+                <h4 class="text-2xl font-semibold text-primary-beige mb-4">Hubungi Kami</h4>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Nama" class="w-full p-3 bg-white border border-primary-beige/50 rounded-lg focus:ring focus:ring-accent-gold text-text-dark shadow-sm">
+                    <input type="email" placeholder="Email" class="w-full p-3 bg-white border border-primary-beige/50 rounded-lg focus:ring focus:ring-accent-gold text-text-dark shadow-sm">
+                    <textarea placeholder="Pesan Anda" rows="4" class="w-full p-3 bg-white border border-primary-beige/50 rounded-lg focus:ring focus:ring-accent-gold text-text-dark shadow-sm"></textarea>
+                    <button type="submit" class="gradient-button font-semibold py-3 px-8 rounded-full text-lg shadow-button-glow w-full">Kirim Pesan</button>
+                </form>
+            </div>
+        </section>
+        
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-cream border-t border-primary-beige/50 mt-20 p-8 text-center">
+        <p class="text-sm text-text-dark/60">LUMINARA &copy; 2025 | Unlock Your Aesthetic.</p>
+        <div class="flex justify-center space-x-4 mt-2">
+            <a href="#" class="text-text-dark/60 hover:text-accent-gold">Ketentuan</a>
+            <a href="#" class="text-text-dark/60 hover:text-accent-gold">Privasi</a>
+        </div>
+    </footer>
+
+
+    <script>
+        // --- Data Definitions ---
+        const VIEWS = {
+            HOME: 'home',
+            ANALYSIS: 'analysis',
+            RESULTS: 'results',
+            ABOUT: 'about'
+        };
+
+        // Data hasil analisis (Skin Tone x Gemini)
+        const resultsData = {
+            'Cool': {
+                title: 'Cool Undertone x The Sophisticated Gemini',
+                color: '#D4C9BF', // Display Beige
+                explanation: 'Sistem AI mendeteksi sub-nada kulit Anda adalah **Dingin (Cool)**. Dipadukan dengan energi Gemini yang *versatile* dan *intellectual*, Anda bersinar dalam palet warna mewah yang menawarkan kontras. Anda mampu memadukan tekstur dingin (metalik) dengan warna hangat yang diredam (muted).',
+                bestColors: [
+                    { name: 'Putih Gading', hex: '#FAF0E6' }, 
+                    { name: 'Abu-abu Arang', hex: '#36454F' }, 
+                    { name: 'Biru Navy Klasik', hex: '#000080' }, 
+                    { name: 'Burgundy Dalam', hex: '#800020' },
+                    { name: 'Perak Metalik', hex: '#C0C0C0' }
+                ],
+                avoidColors: [
+                    { name: 'Kuning Terang', hex: '#FFFF00' }, 
+                    { name: 'Oranye Neon', hex: '#FF6700' }, 
+                    { name: 'Cokelat Bata', hex: '#A52A2A' }, 
+                    { name: 'Olive Green', hex: '#808000' }
+                ],
+                outfit: {
+                    main: 'Gaya Gen Z *classy* Anda memerlukan *tailored structure* dan aksesori statement. Karena Gemini suka berubah, Anda bisa bereksperimen dengan potongan androgini dan *layering* yang cerdas.',
+                    detail: [
+                        '**Gaya Pakaian:** Blazer oversized, celana *wide-leg* yang jatuh, kemeja sutra *crisp*, dan *trench coat* minimalis.',
+                        '**Bahan:** Wool, kulit vegan, satin berkualitas tinggi, dan *cashmere*.',
+                        '**Perhiasan:** Perhiasan emas putih (white gold) atau perak tebal. Jam tangan klasik dan anting *hoop* besar.',
+                        '**Aksesoris:** Tas *structured* dengan warna netral atau *scarf* sutra bermotif abstrak.'
+                    ]
+                },
+                makeup: 'Foundation netral-dingin atau *cool-toned*. Lipstik *mauve* atau merah berbasis biru. *Contouring* lembut dengan *cool-brown* dan *highlighter* perak/champagne.'
+            },
+            'Warm': {
+                title: 'Warm Undertone x The Effortless Gemini',
+                color: '#B8860B', // Display Gold
+                explanation: 'Sistem AI mengonfirmasi sub-nada kulit Anda adalah **Hangat (Warm)**. Dipadukan dengan sisi Gemini yang *flirtatious* dan *adaptable*, Anda paling cocok dengan palet warna bumi yang kaya dan aksen emas. Tampilan Anda selalu terlihat santai namun mahal.',
+                bestColors: [
+                    { name: 'Cream Gading', hex: '#FFE5B4' }, 
+                    { name: 'Terracotta', hex: '#E2725B' }, 
+                    { name: 'Khaki Netral', hex: '#C3B091' }, 
+                    { name: 'Gold & Bronze', hex: '#D4AF37' },
+                    { name: 'Ungu Muted (Mave)', hex: '#8C7892' }
+                ],
+                avoidColors: [
+                    { name: 'Pink Fuchsia', hex: '#FF00FF' }, 
+                    { name: 'Biru Es', hex: '#ADD8E6' }, 
+                    { name: 'Hitam Jet', hex: '#000000' }, 
+                    { name: 'Merah Sejati', hex: '#FF0000' }
+                ],
+                outfit: {
+                    main: 'Gaya Gen Z *classy* Anda berfokus pada siluet *effortless*, warna monokromatik, dan tekstur lembut. Gemini memungkinkan Anda untuk mencampur gaya vintage dan modern dengan mudah.',
+                    detail: [
+                        '**Gaya Pakaian:** Setelan rajut (knitwear set) berwarna cream, *loose pants*, rok *midi* satin, dan *crop shirt* dengan detail renda.',
+                        '**Bahan:** Linen, katun organik, *cashmere*, dan kulit suede.',
+                        '**Perhiasan:** Emas kuning (yellow gold) atau rose gold. Kalung berlapis (*layered*) dan anting minimalis namun berdetail.',
+                        '**Aksesoris:** Tas *slouchy* atau *shoulder bag* dengan warna bumi (terracotta, mocha). Kacamata hitam besar.'
+                    ]
+                },
+                makeup: 'Foundation berbasis kuning atau *warm-toned*. Lipstik *nude* keemasan atau *peach* lembut. *Blush* berwarna koral atau persik. *Eyeshadow* bronze, *mocha*, atau aksen *shimmer* emas.'
+            },
+            'Neutral': {
+                title: 'Neutral Undertone x The Balanced Gemini',
+                color: '#D4C9BF', // Display Beige
+                explanation: 'Sistem AI mengidentifikasi sub-nada kulit Anda adalah **Netral (Neutral)**. Anda mendapatkan yang terbaik dari kedua dunia. Dengan karakter Gemini yang *versatile*, Anda dapat menguasai hampir semua palet. Fokus pada *mid-tones* dan *monochrome* untuk kesan mewah.',
+                bestColors: [
+                    { name: 'Putih Off-White', hex: '#F0F0F0' }, 
+                    { name: 'Taupe', hex: '#483C32' }, 
+                    { name: 'Hijau Sage', hex: '#B2AC88' }, 
+                    { name: 'Beige Medium', hex: '#C7B7A3' },
+                    { name: 'Merah Bata Diredam', hex: '#C15437' }
+                ],
+                avoidColors: [
+                    { name: 'Warna Neon Kuat', hex: '#00FFFF' }, 
+                    { name: 'Ungu Elektrik', hex: '#7F00FF' }, 
+                    { name: 'Kuning Pucat', hex: '#F0E68C' }, 
+                    { name: 'Emas Brass Murah', hex: '#C9AE5D' }
+                ],
+                outfit: {
+                    main: 'Kekuatan Anda adalah fleksibilitas. Pilih tampilan *capsule wardrobe* dengan warna netral yang kaya, kemudian tambahkan satu aksen warna musim yang kuat. Paduan metalik emas dan perak sangat cocok untuk Anda.',
+                    detail: [
+                        '**Gaya Pakaian:** Paduan blazer dan celana panjang *matching*, *vest* rajut, gaun *slip dress* yang elegan, dan *outerwear* yang mudah dilepas pasang (sesuai kepribadian Gemini).',
+                        '**Bahan:** Sutra, kulit, denim berkualitas, dan katun premium.',
+                        '**Perhiasan:** Kombinasi Emas dan Perak, atau Rose Gold. Perhiasan dengan batu permata netral seperti mutiara atau *diamond* imitasi.',
+                        '**Aksesoris:** Topi baret, sarung tangan kulit pendek, dan tas dengan tekstur unik.'
+                    ]
+                },
+                makeup: 'Foundation netral, *rose-toned* atau *peach* lembut. Lipstik *berry* atau *nude* seimbang. Anda bisa memilih *highlighter* emas atau perak tergantung suasana hati.'
+            }
+        };
+        
+        let currentState = VIEWS.HOME;
+
+        // --- Utility Functions ---
+
+        /**
+         * Clears all content views and displays the target view.
+         * @param {string} viewName - The name of the view to navigate to (e.g., 'home', 'analysis').
+         */
+        function navigate(viewName) {
+            currentState = viewName;
+            const views = document.querySelectorAll('section[id$="-view"]');
+            views.forEach(view => view.classList.add('hidden'));
+            
+            const targetView = document.getElementById(`${viewName}-view`);
+            if (targetView) {
+                targetView.classList.remove('hidden');
+                window.scrollTo(0, 0); // Scroll ke atas saat navigasi
+            }
+        }
+
+        /**
+         * Simulates the AI analysis process.
+         */
+        function startAnalysis() {
+            const fileInput = document.getElementById('photo-upload');
+            if (fileInput.files.length === 0) {
+                console.error("No file selected.");
+                return;
+            }
+
+            document.getElementById('analysis-input').classList.add('hidden');
+            document.getElementById('analysis-processing').classList.remove('hidden');
+
+            // Simulate network delay and AI processing (3 seconds)
+            setTimeout(() => {
+                // Randomly select a simulated result
+                const keys = Object.keys(resultsData);
+                const randomKey = keys[Math.floor(Math.random() * keys.length)];
+                const result = resultsData[randomKey];
+
+                renderResults(result, randomKey);
+                navigate(VIEWS.RESULTS);
+
+                // Reset analysis view state
+                document.getElementById('analysis-input').classList.remove('hidden');
+                document.getElementById('analysis-processing').classList.add('hidden');
+                fileInput.value = ''; // Clear file input
+            }, 3000);
+        }
+
+        /**
+         * Renders the personalized analysis result page.
+         * @param {object} data - The analysis data (Cool, Warm, or Neutral).
+         * @param {string} key - The key (Cool, Warm, Neutral) for the result.
+         */
+        function renderResults(data, key) {
+            const resultContent = document.getElementById('result-content');
+            
+            // Highlight color uses the warm gold accent
+            const undertoneDisplayColor = 'var(--colors-accent-gold)'; 
+
+            // Create color swatches HTML
+            const bestSwatches = data.bestColors.map(color => `
+                <div class="p-3 rounded-xl glow-card text-center" style="background-color: ${color.hex}; border: 2px solid ${color.hex}; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
+                    <p class="font-semibold text-sm" style="color: ${['#FAF0E6', '#FFE5B4', '#D4C9BF', '#E6E6FA', '#98FB98', '#F0F0F0'].includes(color.hex) ? 'var(--colors-text-dark)' : '#FFFFFF'};">${color.name}</p>
+                </div>
+            `).join('');
+
+            const avoidSwatches = data.avoidColors.map(color => `
+                <div class="p-3 rounded-xl glow-card text-center" style="background-color: ${color.hex}; border: 2px solid var(--colors-primary-beige); box-shadow: 0 0 5px rgba(0,0,0,0.1);">
+                    <p class="font-semibold text-sm" style="color: ${['#FAF0E6', '#FFE5B4', '#D4C9BF', '#E6E6FA', '#C7EA46', '#F0F0F0'].includes(color.hex) ? 'var(--colors-text-dark)' : '#FFFFFF'};">${color.name}</p>
+                </div>
+            `).join('');
+
+            // Cultural Fashion Match (Gen Z classy take on Indonesian fabrics)
+            const culturalList = [
+                '**Batik Classy:** Pilih Batik tulis dengan warna Sogan lembut atau Indigo diredam. Hindari motif yang terlalu ramai; fokus pada kesederhanaan.',
+                '**Kebaya Kontemporer:** Gunakan Kebaya kutu baru atau *lace* dengan warna Beige, Cream, atau Ungu Muted. Padukan dengan perhiasan emas.',
+                '**Wastra Modern:** Kenakan Ulos atau Songket sebagai *outerwear* (kimono) atau aksen tas, bukan sebagai kain utama, untuk sentuhan *effortless* mewah.',
+            ].map(item => `<li class="text-text-dark/80 mb-2 leading-relaxed list-disc ml-5">${item}</li>`).join('');
+
+            // Detailed Outfit Recommendations
+            const outfitDetailList = data.outfit.detail.map(item => `
+                <li class="text-text-dark/80 mb-2 leading-relaxed list-disc ml-5">${item}</li>
+            `).join('');
+            
+            resultContent.innerHTML = `
+                <div class="text-center mb-12">
+                    <h2 class="text-6xl font-black uppercase tracking-wider mb-2 logo-text">Hasil Analisis Luminara</h2>
+                    <p class="text-xl text-accent-gold font-semibold">"Skin Tone X Karakter Gemini: Persona Paling Mewah Anda"</p>
+                </div>
+
+                <div class="glow-card p-8 rounded-2xl mb-12 border-4" style="border-color: var(--colors-accent-gold);">
+                    <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+                        
+                        <!-- Analysis Result & Explanation -->
+                        <div class="flex-1">
+                            <h3 class="text-5xl font-extrabold uppercase mb-4" style="color: var(--colors-accent-gold); text-shadow: 0 0 8px rgba(184, 134, 11, 0.4);">
+                                ${data.title}
+                            </h3>
+                            <p class="text-text-dark/80 text-lg mb-6 leading-relaxed">
+                                <span class="font-bold" style="color: var(--colors-accent-gold);">Analisis AI Canggih:</span> ${data.explanation}
+                            </p>
+                            
+                            <!-- Key Interactions -->
+                            <div class="flex flex-wrap gap-4 mt-6">
+                                <button class="gradient-button font-semibold py-3 px-6 rounded-full text-sm shadow-button-glow flex-1 md:flex-none">
+                                    Unduh Laporan Analisis
+                                </button>
+                                <a href="https://www.instagram.com/" target="_blank" class="gradient-button font-semibold py-3 px-6 rounded-full text-sm shadow-button-glow flex-1 md:flex-none opacity-90 hover:opacity-100 transition">
+                                    Bagikan ke Instagram
+                                </a>
+                                <a href="https://shopee.co.id/" target="_blank" class="bg-primary-beige/50 text-text-dark font-semibold py-3 px-6 rounded-full text-sm hover:bg-accent-gold hover:text-white transition flex-1 md:flex-none">
+                                    Belanja Tampilan Ini
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Visual Color Wheel (Simulation) -->
+                        <div class="flex-shrink-0 w-48 h-48 rounded-full flex items-center justify-center border-4 border-primary-beige/50 shadow-soft-glow" style="background-image: conic-gradient(from 0deg, var(--colors-accent-gold), var(--colors-primary-beige), var(--colors-accent-gold), var(--colors-primary-beige), var(--colors-accent-gold));">
+                            <div class="w-32 h-32 rounded-full bg-secondary-cream flex items-center justify-center border-2 border-accent-gold/50">
+                                <p class="text-5xl font-black" style="color: var(--colors-text-dark);">${key.charAt(0)}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Detailed Recommendations -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                    
+                    <!-- Outfit Styles (Lebih Detail) -->
+                    <div class="glow-card p-6 rounded-xl">
+                        <h4 class="text-2xl font-bold uppercase text-accent-gold mb-4">Rekomendasi Gaya & Pakaian (Classy Aesthetic)</h4>
+                        <p class="text-text-dark/80 leading-relaxed mb-4">${data.outfit.main}</p>
+                        <ul class="list-none pl-0 mt-4">
+                            ${outfitDetailList}
+                        </ul>
+                    </div>
+
+                    <!-- Makeup Shades -->
+                    <div class="glow-card p-6 rounded-xl">
+                        <h4 class="text-2xl font-bold uppercase text-accent-gold mb-4">Warna Riasan (Minimalis & Mewah)</h4>
+                        <p class="text-text-dark/80 leading-relaxed">${data.makeup}</p>
+
+                        <h4 class="text-2xl font-bold uppercase text-accent-gold mt-6 mb-4">Padanan Busana Budaya Lokal</h4>
+                        <ul class="list-none pl-0">
+                            ${culturalList}
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Color Palettes -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="p-6 rounded-xl glow-card border-primary-beige">
+                        <h4 class="text-2xl font-bold uppercase text-accent-gold mb-4">Palet Terbaik (Classy Core)</h4>
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-4">
+                            ${bestSwatches}
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl glow-card border-accent-gold">
+                        <h4 class="text-2xl font-bold uppercase text-text-dark mb-4">Palet yang Harus Dihindari (Anti-Gen Z Aesthetic)</h4>
+                        <div class="grid grid-cols-3 sm:grid-cols-4 gap-4">
+                            ${avoidSwatches}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skincare & Diet Tips -->
+                <div class="glow-card p-8 rounded-2xl mt-12">
+                    <h3 class="text-3xl font-bold uppercase text-accent-gold mb-4">Tips Perawatan & Diet (Glowing Base)</h3>
+                    <div class="text-text-dark/80 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <p class="font-semibold text-primary-beige mb-2">Tips Perawatan Kulit</p>
+                            <p>Fokus pada rutinitas yang memberikan kilau alami (*glass skin*). Gunakan serum vitamin C dan *moisturizer* berbasis ceramide. SPF spektrum luas adalah *must-have* untuk mempertahankan rona kulit beige/cream yang mewah.</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-primary-beige mb-2">Saran Diet Sehat</p>
+                            <p>Tingkatkan konsumsi makanan kaya kolagen (kaldu tulang, ikan) dan antioksidan (matcha, biji-bijian, buah beri) untuk tampilan kulit yang sehat, terhidrasi, dan *plump* dari dalam.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Initial load
+        window.onload = () => {
+            navigate(VIEWS.HOME);
+        };
+    </script>
+</body>
+</html>
